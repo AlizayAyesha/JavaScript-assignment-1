@@ -177,10 +177,37 @@ answer”.
 b. If the guessed number +1 is the secret number, show “Close
 enough to the correct answer”.**
 
+var secretNumber = Math.floor(Math.random() * 10) + 1;
+
+var guess = parseInt(prompt("Guess the secret number (between 1 and 10):"));
+
+if (guess === secretNumber) {
+    alert("Bingo! Correct answer");
+} else if (guess + 1 === secretNumber || guess - 1 === secretNumber) {
+    alert("Close enough to the correct answer");
+} else {
+    alert("Sorry, wrong guess. The correct answer was " + secretNumber);
+}
+
 -----------------------------------------------------------------------------------
 
 **6. Write a program that checks whether the given input is an even
 number or an odd number.**
+
+var input = prompt("Enter a number:");
+
+var number = +input;
+
+if (!isNaN(number)) {
+    
+    if (number % 2 === 0) {
+        alert(number + " is an even number.");
+    } else {
+        alert(number + " is an odd number.");
+    }
+} else {
+    alert("Invalid input. Please enter a valid number.");
+}
 
 -----------------------------------------------------------------------------------
 
