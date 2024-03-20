@@ -179,7 +179,7 @@ enough to the correct answer”.**
 
 var secretNumber = Math.floor(Math.random() * 10) + 1;
 
-var guess = parseInt(prompt("Guess the secret number (between 1 and 10):"));
+var guess = (prompt("Guess the secret number (between 1 and 10):"));
 
 if (guess === secretNumber) {
     alert("Bingo! Correct answer");
@@ -218,15 +218,73 @@ b. Second number
 c. Operation (+, -, *, /, %)
 **Compute & show the calculated result to user.**
 
+var firstNumber = parseFloat(prompt("Enter the first number:"));
+var secondNumber = parseFloat(prompt("Enter the second number:"));
+var operation = prompt("Enter the operation (+, -, *, /, %):");
+
+
+var result;
+
+
+if (!isNaN(firstNumber) && !isNaN(secondNumber)) {
+
+    switch (operation) {
+        case "+":
+            result = firstNumber + secondNumber; break;
+        case "-":
+            result = firstNumber - secondNumber; break;
+        case "*":
+            result = firstNumber * secondNumber; break;
+        case "/":
+            result = secondNumber !== 0 ? firstNumber / secondNumber : "Error: Division by zero"; break;
+        case "%":
+            result = secondNumber !== 0 ? firstNumber % secondNumber : "Error: Modulus by zero"; break;
+        default:
+            result = "Error: Invalid operation"; break;
+    }
+    alert(result);
+} else {
+    alert("Invalid input. Please enter valid numbers.");
+}
+
 -----------------------------------------------------------------------------------
 
 **8. Write a program that takes input a number from user & state whether
 the number is positive, negative or zero.**
 
+
+var number = prompt("Enter a number:");
+number = +number;
+if (number > 0) {
+    alert("The number is positive.");
+} else if (number < 0) {
+    alert("The number is negative.");
+} else if (number === 0) {
+    alert("The number is zero.");
+} else {
+    alert("Invalid input. Please enter a valid number.");
+}
+
+
 -----------------------------------------------------------------------------------
 
 **9. Write a program that takes a character (i.e. string of length 1) and
 returns true if it is a vowel, false otherwise**
+
+var character = prompt("Enter a character (a single letter):");
+
+character = character.toLowerCase();
+
+var isVowel = false;
+if (character.length === 1) {
+    isVowel = ['a', 'e', 'i', 'o', 'u'].includes(character);
+}
+
+if (isVowel) {
+    alert("'" + character + "' is a vowel.");
+} else {
+    alert("'" + character + "' is not a vowel.");
+}
 
 -----------------------------------------------------------------------------------
 
@@ -241,6 +299,21 @@ same, show message “Correct! The password you
 entered matches the original password”. Show “Incorrect
 password” otherwise.
 
+var correct_Password = "password123";
+
+var entered_Password = prompt("Enter your password:");
+
+if(!entered_Password){
+    alert("Please enter your password.");
+}
+else if (entered_Password == correct_Password){
+    alert("Correct! The password you entered matches the original password.");
+
+} else{
+    alert("Incorrect password.");
+}
+
+
 -----------------------------------------------------------------------------------
 
 **11. Write a program that take time as input from user in 24 hours clock
@@ -248,4 +321,28 @@ format like: 1900 = 7pm. Implement the following case using if, else &
 else if statements**
 
 
+var time24 = parseInt(prompt("Enter time in 24-hour clock format (e.g., 1900):"));
+
+
+var hour12, period;
+
+if (time24 >= 0 && time24 <= 2400) {
+    if (time24 === 0) {
+        hour12 = 12;
+        period = 'AM';
+    } else if (time24 < 1200) {
+        hour12 = Math.floor(time24 / 100);
+        period = 'AM';
+    } else if (time24 === 1200) {
+        hour12 = 12;
+        period = 'PM';
+    } else {
+        hour12 = Math.floor((time24 - 1200) / 100);
+        period = 'PM';
+    }
+
+    alert("Time in 12-hour clock format: " + hour12 + (time24 % 100 === 0 ? '' : ':' + (time24 % 100)) + ' ' + period);
+} else {
+    alert("Invalid input. Please enter time in the range 0000 to 2400.");
+}
 
